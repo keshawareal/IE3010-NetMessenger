@@ -1,0 +1,78 @@
+[2026-10-15 22:05:20] SERVER_START port=7956 nid=6019 log=netmsg_IT23601956.log storage=./storage/IT23601956
+[2026-10-15 22:05:21] CONNECT ip=127.0.0.1 fd=5
+[2026-10-15 22:05:21] REGISTER user=amal ip=127.0.0.1
+[2026-10-15 22:05:22] CONNECT ip=127.0.0.1 fd=6
+[2026-10-15 22:05:22] REGISTER user=nimal ip=127.0.0.1
+[2026-10-15 22:05:22] DISCONNECT user=nimal ip=127.0.0.1 (QUIT)
+[2026-10-15 22:05:24] DISCONNECT user=amal ip=127.0.0.1 (QUIT)
+[2026-10-15 22:05:25] SERVER_START port=7956 nid=6019 log=netmsg_IT23601956.log storage=./storage/IT23601956
+[2026-10-15 22:05:25] CONNECT ip=127.0.0.1 fd=5
+[2026-10-15 22:05:25] CONNECT ip=127.0.0.1 fd=6
+[2026-10-15 22:05:25] REGISTER user=amal ip=127.0.0.1
+[2026-10-15 22:05:26] REGISTER user=kamal ip=127.0.0.1
+[2026-10-15 22:05:27] CONNECT ip=127.0.0.1 fd=7
+[2026-10-15 22:05:27] REGISTER user=nimal ip=127.0.0.1
+[2026-10-15 22:05:27] BCAST from=nimal msg=hello everyone
+[2026-10-15 22:05:27] PMSG from=nimal to=amal msg=secret message here
+[2026-10-15 22:05:27] DISCONNECT user=nimal ip=127.0.0.1 (QUIT)
+[2026-10-15 22:05:29] DISCONNECT user=amal ip=127.0.0.1 (QUIT)
+[2026-10-15 22:05:30] DISCONNECT user=kamal ip=127.0.0.1 (QUIT)
+[2026-10-15 22:05:30] SERVER_START port=7956 nid=6019 log=netmsg_IT23601956.log storage=./storage/IT23601956
+[2026-10-15 22:05:31] CONNECT ip=127.0.0.1 fd=5
+[2026-10-15 22:05:31] CONNECT ip=127.0.0.1 fd=6
+[2026-10-15 22:05:31] REGISTER user=amal ip=127.0.0.1
+[2026-10-15 22:05:31] JOIN user=amal room=room1
+[2026-10-15 22:05:31] REGISTER user=kamal ip=127.0.0.1
+[2026-10-15 22:05:32] CONNECT ip=127.0.0.1 fd=7
+[2026-10-15 22:05:32] REGISTER user=nimal ip=127.0.0.1
+[2026-10-15 22:05:32] JOIN user=nimal room=room1
+[2026-10-15 22:05:32] RMSG from=nimal room=room1 msg=hi room
+[2026-10-15 22:05:32] LEAVE user=nimal room=room1
+[2026-10-15 22:05:32] DISCONNECT user=nimal ip=127.0.0.1 (QUIT)
+[2026-10-15 22:05:35] DISCONNECT user=amal ip=127.0.0.1 (QUIT)
+[2026-10-15 22:05:35] DISCONNECT user=kamal ip=127.0.0.1 (QUIT)
+[2026-10-15 22:05:36] SERVER_START port=7956 nid=6019 log=netmsg_IT23601956.log storage=./storage/IT23601956
+[2026-10-15 22:05:37] CONNECT ip=127.0.0.1 fd=5
+[2026-10-15 22:05:37] REGISTER user=amal ip=127.0.0.1
+[2026-10-15 22:05:37] JOIN user=amal room=files
+[2026-10-15 22:05:38] CONNECT ip=127.0.0.1 fd=6
+[2026-10-15 22:05:38] REGISTER user=kamal ip=127.0.0.1
+[2026-10-15 22:05:38] JOIN user=kamal room=files
+[2026-10-15 22:05:38] FILE from=kamal target=amal file=testfile.bin size=300000 stored=./storage/IT23601956/kamal/testfile.bin
+[2026-10-15 22:05:38] FILE from=kamal target=files file=testfile.bin size=300000 stored=./storage/IT23601956/kamal/testfile.bin
+[2026-10-15 22:05:38] FILE_REJECTED from=kamal target=ghost file=testfile.bin size=300000 reason=ERR 002 USER_NOT_FOUND
+[2026-10-15 22:05:38] FILE_REJECTED from=kamal target=amal file=big.bin size=11000000 reason=ERR 004 FILE_TOO_LARGE
+[2026-10-15 22:05:40] DISCONNECT user=kamal ip=127.0.0.1 (QUIT)
+[2026-10-15 22:05:45] DISCONNECT user=amal ip=127.0.0.1 (QUIT)
+[2026-10-15 22:05:45] SERVER_START port=7956 nid=6019 log=netmsg_IT23601956.log storage=./storage/IT23601956
+[2026-10-15 22:05:46] CONNECT ip=127.0.0.1 fd=5
+[2026-10-15 22:05:46] REGISTER user=tester ip=127.0.0.1
+[2026-10-15 22:05:46] DISCONNECT user=tester ip=127.0.0.1 (QUIT)
+[2026-10-15 22:05:46] CONNECT ip=127.0.0.1 fd=6
+[2026-10-15 22:05:47] REGISTER user=framer ip=127.0.0.1
+[2026-10-15 22:05:47] BCAST from=framer msg=hi
+[2026-10-15 22:05:47] DISCONNECT user=framer ip=127.0.0.1 (QUIT)
+[2026-10-15 22:05:47] CONNECT ip=127.0.0.1 fd=5
+[2026-10-15 22:05:47] REGISTER user=still_alive ip=127.0.0.1
+[2026-10-15 22:05:47] DISCONNECT user=still_alive ip=127.0.0.1 (QUIT)
+[2026-10-15 22:05:48] SERVER_START port=7956 nid=6019 log=netmsg_IT23601956.log storage=./storage/IT23601956
+[2026-10-15 22:05:48] CONNECT ip=127.0.0.1 fd=5
+[2026-10-15 22:05:48] REGISTER user=ghost ip=127.0.0.1
+[2026-10-15 22:05:48] JOIN user=ghost room=room9
+[2026-10-15 22:05:49] DISCONNECT user=ghost ip=127.0.0.1 (connection lost)
+[2026-10-15 22:05:50] CONNECT ip=127.0.0.1 fd=6
+[2026-10-15 22:05:50] REGISTER user=watcher ip=127.0.0.1
+[2026-10-15 22:05:50] DISCONNECT user=watcher ip=127.0.0.1 (QUIT)
+[2026-10-15 22:11:31] SERVER_START port=7956 nid=6019 log=netmsg_IT23601956.log storage=./storage/IT23601956
+[2026-10-15 22:11:37] CONNECT ip=127.0.0.1 fd=5
+[2026-10-15 22:11:42] CONNECT ip=127.0.0.1 fd=6
+[2026-10-15 22:12:11] CONNECT ip=127.0.0.1 fd=7
+[2026-10-15 22:12:16] REGISTER user=suba ip=127.0.0.1
+[2026-10-15 22:12:22] REGISTER user=suba2 ip=127.0.0.1
+[2026-10-15 22:12:29] REGISTER user=suba3 ip=127.0.0.1
+[2026-10-15 22:12:53] BCAST from=suba msg=Hello all
+[2026-10-15 22:13:07] JOIN user=suba room=ROOM1
+[2026-10-15 22:13:12] JOIN user=suba3 room=ROOM1
+[2026-10-15 22:13:28] RMSG from=suba3 room=ROOM1 msg=hello
+[2026-10-15 22:13:42] LEAVE user=suba3 room=ROOM1
+[2026-10-15 22:13:48] LEAVE user=suba room=ROOM1
