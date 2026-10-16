@@ -1,0 +1,109 @@
+== 1. Build ==
+gcc -Wall -Wextra -O2 -pthread -o server_1956 server_1956.c
+gcc -Wall -Wextra -O2 -pthread -o client_1956 client_1956.c
+
+== 2. Listening check (screenshot this) ==
+LISTEN 0      16           0.0.0.0:7956      0.0.0.0:*    users:(("server_1956",pid=4519,fd=4))
+
+== 3. Test suites ==
+
+== test_register ==
+  PASS  register ok
+  PASS  duplicate name rejected
+  PASS  LIST shows both users
+  PASS  join notification
+  PASS  leave notification
+  PASS  second REGISTER refused
+  PASS  QUIT answered
+  PASS  every OK/ERR has NID
+  -> 8 passed, 0 failed
+
+== test_messaging ==
+  PASS  broadcast delivered to amal
+  PASS  broadcast delivered to kamal
+  PASS  private delivered to amal
+  PASS  private NOT seen by kamal
+  PASS  sender gets OK SENT
+  PASS  PMSG unknown user
+  PASS  PMSG missing text
+  -> 7 passed, 0 failed
+
+== test_rooms ==
+  PASS  join ok
+  PASS  rooms listed
+  PASS  room msg delivered
+  PASS  non-member got no room msg
+  PASS  unknown room
+  PASS  leave ok
+  PASS  leave twice -> error
+  PASS  send after leaving refused
+  -> 8 passed, 0 failed
+
+== test_file ==
+  PASS  file accepted
+  PASS  unknown target
+  PASS  too large rejected
+  PASS  framing intact after errors (LIST works)
+  PASS  receiver saw the file
+  PASS  server copy identical (./storage/IT23601956/kamal/testfile.bin)
+  PASS  receiver copy identical
+  -> 7 passed, 0 failed
+
+== test_errors ==
+  PASS  command before REGISTER
+  PASS  unknown command
+  PASS  invalid username
+  PASS  bad SENDFILE size
+  PASS  partial line reassembled
+  PASS  multiple lines in one buffer
+  PASS  third line handled
+  PASS  server still running
+  -> 8 passed, 0 failed
+
+== test_disconnect ==
+tests/test_disconnect.sh: line 13:  4695 Killed                  ./client_1956 < out/ghost.fifo > out/dc_ghost.txt 2>&1
+  PASS  ghost registered first
+  PASS  ghost removed from user list
+  PASS  ghost's room cleaned up
+  PASS  disconnect logged
+  PASS  server survived
+  -> 5 passed, 0 failed
+
+== 4. Server log excerpt (netmsg_IT23601956.log) ==
+[2026-10-15 22:05:20] SERVER_START port=7956 nid=6019 log=netmsg_IT23601956.log storage=./storage/IT23601956
+[2026-10-15 22:05:21] CONNECT ip=127.0.0.1 fd=5
+[2026-10-15 22:05:21] REGISTER user=amal ip=127.0.0.1
+[2026-10-15 22:05:22] CONNECT ip=127.0.0.1 fd=6
+[2026-10-15 22:05:22] REGISTER user=nimal ip=127.0.0.1
+[2026-10-15 22:05:22] DISCONNECT user=nimal ip=127.0.0.1 (QUIT)
+[2026-10-15 22:05:24] DISCONNECT user=amal ip=127.0.0.1 (QUIT)
+[2026-10-15 22:05:25] SERVER_START port=7956 nid=6019 log=netmsg_IT23601956.log storage=./storage/IT23601956
+[2026-10-15 22:05:25] CONNECT ip=127.0.0.1 fd=5
+[2026-10-15 22:05:25] CONNECT ip=127.0.0.1 fd=6
+[2026-10-15 22:05:25] REGISTER user=amal ip=127.0.0.1
+[2026-10-15 22:05:26] REGISTER user=kamal ip=127.0.0.1
+[2026-10-15 22:05:27] CONNECT ip=127.0.0.1 fd=7
+[2026-10-15 22:05:27] REGISTER user=nimal ip=127.0.0.1
+[2026-10-15 22:05:27] BCAST from=nimal msg=hello everyone
+[2026-10-15 22:05:27] PMSG from=nimal to=amal msg=secret message here
+[2026-10-15 22:05:27] DISCONNECT user=nimal ip=127.0.0.1 (QUIT)
+[2026-10-15 22:05:29] DISCONNECT user=amal ip=127.0.0.1 (QUIT)
+[2026-10-15 22:05:30] DISCONNECT user=kamal ip=127.0.0.1 (QUIT)
+[2026-10-15 22:05:30] SERVER_START port=7956 nid=6019 log=netmsg_IT23601956.log storage=./storage/IT23601956
+[2026-10-15 22:05:31] CONNECT ip=127.0.0.1 fd=5
+[2026-10-15 22:05:31] CONNECT ip=127.0.0.1 fd=6
+[2026-10-15 22:05:31] REGISTER user=amal ip=127.0.0.1
+[2026-10-15 22:05:31] JOIN user=amal room=room1
+[2026-10-15 22:05:31] REGISTER user=kamal ip=127.0.0.1
+
+== 5. Stored files (./storage/IT23601956) ==
+./storage/IT23601956:
+total 0
+drwxr-xr-x. 2 kewasa kewasa 26 Oct 15 22:05 kamal
+
+./storage/IT23601956/kamal:
+total 296
+-rw-r--r--. 1 kewasa kewasa 300000 Oct 15 22:05 testfile.bin
+
+== Result ==
+ALL SUITES PASSED
